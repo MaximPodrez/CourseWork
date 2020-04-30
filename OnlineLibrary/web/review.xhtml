@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<title>Review page</title>
+        
+        <h:outputStylesheet library="css" name="main-style.css"/>
+
+	<link rel="stylesheet" href="assets/demo.css"/>
+	<link rel="stylesheet" href="assets/header-second-bar.css"/>
+	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
+    </h:head>
+    <h:body id = "hel">
+            <header class="header-two-bars">
+
+            <div class="header-first-bar">
+
+                    <div class="header-limiter">
+
+                            <h1><a href="mainPaige.xhtml">ONLINE<span>LIBRARY</span></a></h1>
+
+                            <nav>
+                                        <a href="catalog.xhtml">Catalog</a>
+                                        <a href="mainPaige.xhtml" class="selected">Main</a>
+                                        <a href="basket.xhtml">Basket</a>
+                                        <a href="profile.xhtml">Profile</a>
+                                        <a href="addBook.xhtml">Add book</a>
+                                </nav>
+
+                                <a href="login.xhtml" class="logout-button">Logout</a>
+                    </div>
+
+            </div>
+
+            <div class="header-second-bar">
+
+                    <div class="header-limiter">
+                            <h2><a href="#">#{login.username}</a></h2>
+
+                            <nav>
+                                    <a href="review.xhtml"><i class="fa fa-comments-o"></i> Reviews</a>
+                                    <a href="profile.xhtml"><i class="fa fa-user"></i> Profile</a>
+                                    <a href="basket.xhtml"><i class="fa fa-shopping-cart"></i> Basket</a>
+                                    <a href="#"><i class="fa fa-cogs"></i> Settings</a>
+                            </nav>
+
+                    </div>
+
+            </div>
+                
+                <div class="new-comment">
+                    <h:form>
+                        <p class="service" style="font-style: italic;">Write only truth...</p>
+                        <p:inputTextarea value="#{comment.comment}"/>
+                        <br/>  
+                        <p:commandButton styleClass="service" action="#{comment.addComment}" value="Send" ajax="false">
+                        </p:commandButton>
+                    </h:form>
+                </div>
+                <h:panelGroup layout="block" styleClass="comments" id="comments">
+                    <ui:repeat value="#{comment.comments}" var="comm">
+                        <div class="comment">
+                            <p:growl id="growl" showDetail="true" sticky="true" />
+                            <div class="comment-username">
+                                <span class="service"><h:outputText styleClass="service" value="#{comm.login.username} " />
+                                <h:outputText style="font-style: italic; font-size: 10pt;" value="#{comm.datte}" /></span>
+                            </div>
+                            <p>
+                                <h:outputText value="#{comm.comment}" />
+                            </p>
+                        </div>
+                    </ui:repeat>
+                </h:panelGroup>
+                
+
+            <footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Online<span>Library</span></h3>
+
+				<p class="footer-links">
+					<a href="#">Home</a>
+					·
+					<a href="#">Blog</a>
+					·
+					<a href="#">Pricing</a>
+					·
+					<a href="#">About</a>
+					·
+					<a href="#">Faq</a>
+					·
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">MaximPodrez © 2020</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>10 Revolution Street</span> Minsk, Belarus</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+375-33-123-45-67</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:maksimka.podrez@mail.ru">maksimka.podrez@mail.ru</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>About the company</span>
+					We are new guys in the internet who makes sites.
+				</p>
+
+				<div class="footer-icons">
+
+					<a href="https://www.facebook.com/profile.php?id=100005395696270"><i class="fa fa-facebook"></i></a>
+					<a href="https://www.instagram.com/maxim_podrez07/"><i class="fa fa-instagram"></i></a>
+					<a href="https://vk.com/m.podrez"><i class="fa fa-vk"></i></a>
+					<a href="https://github.com/MaximPodrez"><i class="fa fa-github"></i></a>
+
+				</div>
+
+			</div>
+
+		</footer>
+
+</header>
+    </h:body>
+</html>
+
