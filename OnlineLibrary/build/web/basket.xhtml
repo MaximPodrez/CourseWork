@@ -76,20 +76,19 @@
                 }
             </style>
  
-        <h:form id="form"> <!--style="width:65%"-->
-            <p:growl id="growl" life="2000" />
+        <h:form id="form" enctype="multipart/form-data"> <!--style="width:65%"-->
             <p:dataView var="prod" value="#{basket.books}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                 gridIcon="pi pi-th-large" listIcon="pi pi-bars">
  
         <p:dataViewGridItem>
-            <p:panel header="#{prod.idBook}" style="text-align:center">
+            <p:panel style="text-align:center">
                 <h:panelGrid columns="1" style="width:100%">
-                    <p:graphicImage name="#{prod.photo}"/> 
+                    <p:graphicImage value="#{basket.image(prod)}" width ="200" height ="300" stream="false"/> 
  
-                    <h:outputText value="" />
+                    <h:outputText value="#{prod.name}" />
  
-                    <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+                    <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
                         <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
                         <f:setPropertyActionListener value="#{prod}" target="#{basket.selectedBook}" />
                     </p:commandLink>
@@ -99,7 +98,7 @@
  
         <p:dataViewListItem>
             <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
-                <p:graphicImage name="img/#{prod.photo}" width ="300" height ="200" /> 
+                <p:graphicImage value="#{basket.image(prod)}" width ="200" height ="300" stream="false"/> 
  
                 <p:outputPanel>
                     <h:panelGrid columns="2" cellpadding="5">
@@ -128,7 +127,7 @@
         <p:outputPanel id="prodDetail" style="text-align:center;">
             <p:panelGrid  columns="2" rendered="#{not empty basket.selectedBook}" columnClasses="label,value">
                 <f:facet name="header">
-                    <p:graphicImage name="#{basket.selectedBook.image()}" width="300" height="200"/> 
+                    <p:graphicImage value="#{basket.image(basket.selectedBook)}" width="200" height="300" stream="false"/> 
                 </f:facet>
  
                 <h:outputText value="Name" />

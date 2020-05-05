@@ -84,7 +84,7 @@
         <p:dataViewGridItem>
             <p:panel style="text-align:center">
                 <h:panelGrid columns="1" style="width:100%">
-                    <p:graphicImage name="img/#{prod.photo}" width ="300" height ="200"/> 
+                    <p:graphicImage value="#{catalog.image(prod)}" width ="200" height ="300" stream="false"/> 
  
                     <h:outputText value="#{prod.name}" />
  
@@ -99,7 +99,7 @@
         <p:dataViewListItem>
             <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
                 
-                <p:graphicImage name="img/#{prod.photo}" width ="300" height ="200" /> 
+                <p:graphicImage value="#{catalog.image(prod)}" width ="200" height ="300" stream="false"/> 
  
                 <p:outputPanel>
                     <h:panelGrid columns="2" cellpadding="5">
@@ -128,7 +128,7 @@
         <p:outputPanel id="prodDetail" style="text-align:center;">
             <p:panelGrid  columns="2" rendered="#{not empty catalog.selectedBook}" columnClasses="label,value">
                 <f:facet name="header">
-                    <p:graphicImage name="img/#{catalog.selectedBook.photo}" width="300" height="200"/> 
+                    <p:graphicImage value="#{catalog.image(catalog.selectedBook)}" width="200" height="300" stream="false"/> 
                 </f:facet>
                 
  

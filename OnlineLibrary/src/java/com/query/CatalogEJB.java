@@ -6,10 +6,12 @@
 
 package com.query;
 
+import com.entity.Book;
 import com.entity.Login;
 import com.entity.Orderok;
-import com.entity.Book;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.LocalBean;
@@ -19,6 +21,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import org.primefaces.model.DefaultStreamedContent;
 
 /**
  *
@@ -57,17 +60,20 @@ public class CatalogEJB {
         for(int i = 0; i < list.size(); i++)
         {
             if(log.getOrderCollection().get(i).getProduct().getName().equals(product.getName()))
+            {
                 log.getOrderCollection().remove(i);
+                break;
+            }
         }
     }
     
-    public void addToBasket(Book product, String username)
+    public void addToBasket(Book product, String username) throws IOException
     {
         int p = 0;
         Login log = em.createNamedQuery("Login.findByUsername", Login.class).setParameter("username", username).getSingleResult();
         for(int i = 0; i < log.getOrderCollection().size(); i++)
         {
-            if(log.getOrderCollection().get(i).getProduct().equals(product)){
+            if(log.getOrderCollection().get(i).getProduct().getName().equals(product.getName())){
                 p++;
                 break;
             }
@@ -94,5 +100,18 @@ public class CatalogEJB {
         out.write(dataToSend);  
         out.flush();  
         FacesContext.getCurrentInstance().responseComplete();
+    }
+    
+    public DefaultStreamedContent im(byte[] name, Book book) throws IOException
+    {
+        byte[] dataToSend;  
+        
+        dataToSend = name;
+        
+        String nm = book.getName();
+        //Book list = em.createNamedQuery("Book.findByName", Book.class).setParameter("name", name).getSingleResult();
+        //dataToSend = list.getPhoto();
+        InputStream is = new ByteArrayInputStream(dataToSend);        
+        return new DefaultStreamedContent(is, "image/jpg");
     }
 }

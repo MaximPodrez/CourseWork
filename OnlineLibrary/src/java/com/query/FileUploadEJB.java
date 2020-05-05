@@ -60,7 +60,7 @@ public class FileUploadEJB {
         
     }*/
     
-    public boolean add(byte[] pdf, String image, String name, String genre, String pages, String year, String auth)
+    public boolean add(byte[] pdf, byte[] image, String name, String genre, String pages, String year, String auth)
     {
         try
         {

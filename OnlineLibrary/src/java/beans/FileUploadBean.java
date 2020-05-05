@@ -36,7 +36,7 @@ public class FileUploadBean {
     
     public void add() throws IOException
     {
-        if(bookEJB.add(pdfFile.getContents(), imageFile.getFileName(), imageFile.getFileName(), genre, pages, year, author))
+        if(bookEJB.add(pdfFile.getContents(), imageFile.getContents(), name, genre, pages, year, author))
         {
             FacesContext.getCurrentInstance().getExternalContext().redirect("addBook.xhtml");
         }

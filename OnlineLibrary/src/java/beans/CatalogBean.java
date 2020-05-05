@@ -14,8 +14,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.model.DefaultStreamedContent;
 
 
 /**
@@ -50,10 +52,10 @@ public class CatalogBean {
         FacesContext.getCurrentInstance().getExternalContext().redirect("catalog.xhtml");
     }
     
-    /*public DefaultStreamedContent image(Book book)
+    public DefaultStreamedContent image(Book book) throws IOException
     {
-        return catalogEJB.im(book.getName());
-    }*/
+        return catalogEJB.im(book.getPhoto(), book);
+    }
     
     public void show() throws IOException {
         catalogEJB.show(selectedBook.getData());

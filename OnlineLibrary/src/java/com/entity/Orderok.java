@@ -7,9 +7,9 @@
 package com.entity;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,34 +31,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Orderok.findAll", query = "SELECT o FROM Orderok o"),
     @NamedQuery(name = "Orderok.findByIdOrder", query = "SELECT o FROM Orderok o WHERE o.idOrder = :idOrder"),
-    @NamedQuery(name = "Orderok.removeOrder", query = "DELETE FROM Orderok o WHERE o.product = :product"),
-    @NamedQuery(name = "Orderok.findByBook", query = "SELECT o FROM Orderok o WHERE o.product = :product"),
-})
+    @NamedQuery(name = "Orderok.findByIdLogin", query = "SELECT o FROM Orderok o WHERE o.login = :login")})
 public class Orderok implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_order")
+    private int idOrder;
     @JoinColumn(name = "id_login", referencedColumnName = "username")
     @ManyToOne(optional = false)
     private Login login;
     @JoinColumn(name = "id_book", referencedColumnName = "name")
     @ManyToOne(optional = false)
     private Book product;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_order")
-    private int idOrder;
 
     public Orderok() {
     }
 
-    public int getIdOrder() {
-        return idOrder;
-    }
-
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
-    }
-    
     public Login getLogin() {
         return login;
     }
@@ -77,10 +67,8 @@ public class Orderok implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.idOrder);
-        hash = 61 * hash + Objects.hashCode(this.login);
-        hash = 61 * hash + Objects.hashCode(this.product);
+        int hash = 3;
+        hash = 89 * hash + this.idOrder;
         return hash;
     }
 
@@ -93,19 +81,14 @@ public class Orderok implements Serializable {
             return false;
         }
         final Orderok other = (Orderok) obj;
-        if (!Objects.equals(this.idOrder, other.idOrder)) {
+        if (this.idOrder != other.idOrder) {
             return false;
         }
-        if (!Objects.equals(this.login, other.login)) {
-            return false;
-        }
-        return Objects.equals(this.product, other.product);
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Orderok{" + "orderokPK=" + idOrder + ", login=" + login + ", product=" + product + '}';
+        return "Orderok{" + "idComment=" + idOrder + ", login=" + login + ", product=" + product + '}';
     }
-    
-    
 }

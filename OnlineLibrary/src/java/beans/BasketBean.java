@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.model.DefaultStreamedContent;
 
 
 /**
@@ -53,6 +54,11 @@ public class BasketBean {
     public void show() throws IOException
     {
         catalogEJB.show(selectedBook.getData());
+    }
+    
+    public DefaultStreamedContent image(Book book) throws IOException
+    {
+        return catalogEJB.im(book.getPhoto(), book);
     }
     
     public List<Book> getBooks() {
