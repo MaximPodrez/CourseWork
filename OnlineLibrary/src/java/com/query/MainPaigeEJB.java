@@ -28,17 +28,6 @@ public class MainPaigeEJB {
     @PersistenceContext(unitName = "OnlineLibraryPU")
     private EntityManager em;
     
-    public List<String> images()
-    {
-       Book book = new Book();
-       List<Book> k = em.createNamedQuery("Book.findAll", Book.class).getResultList();
-       List<String> list = new ArrayList();
-       for (Book bk : k) {
-            //list.add(bk.getPhoto());
-        }
-       return list;
-    }
-    
     public List<DefaultStreamedContent> photos()
     {
         List<Book> k = em.createNamedQuery("Book.findAll", Book.class).getResultList();

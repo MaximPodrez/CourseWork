@@ -109,8 +109,6 @@ public class CatalogEJB {
         dataToSend = name;
         
         String nm = book.getName();
-        //Book list = em.createNamedQuery("Book.findByName", Book.class).setParameter("name", name).getSingleResult();
-        //dataToSend = list.getPhoto();
         InputStream is = new ByteArrayInputStream(dataToSend);        
         return new DefaultStreamedContent(is, "image/jpg");
     }

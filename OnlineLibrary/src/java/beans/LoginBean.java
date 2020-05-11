@@ -41,6 +41,11 @@ public class LoginBean implements Serializable {
     {
         return "registration.xhtml?faces-redirect=true";
     }
+    
+    public String demo()
+    {
+        return "demoMainPaige.xhtml?faces-redirect=true";
+    }
 
     public String getUsername() {
         return username;

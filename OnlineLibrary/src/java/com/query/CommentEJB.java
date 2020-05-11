@@ -10,6 +10,7 @@ import com.entity.Comment;
 import com.entity.Login;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.LocalBean;
@@ -30,6 +31,7 @@ public class CommentEJB {
     public List<Comment> comments(String username)
     {
         List<Comment> comment = em.createNamedQuery("Comment.findAll", Comment.class).getResultList();
+        Collections.reverse(comment);
         return comment;
     }
     

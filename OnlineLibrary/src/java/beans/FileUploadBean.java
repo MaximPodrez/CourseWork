@@ -42,24 +42,8 @@ public class FileUploadBean {
         }
     }
     
-    /*public void upload() {
-        if (pdfFile != null) {
-            FacesMessage message = new FacesMessage("Successful", pdfFile.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            bookEJB.upload(pdfFile.getContents());
-        }
-    }*/
-    
     public void show() throws IOException {
         bookEJB.show();
-    }
-    
-    /*public DefaultStreamedContent im() throws IOException{
-        return bookEJB.im();
-    }*/
-    
-    public void open() throws IOException {
-        bookEJB.open();
     }
      
     public void handleFileUpload(FileUploadEvent event) {

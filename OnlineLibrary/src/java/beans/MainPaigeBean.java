@@ -35,7 +35,6 @@ public class MainPaigeBean {
     
     @PostConstruct
     public void init() {
-        images = mainPage.images();
         photos = mainPage.photos();
     }
     
